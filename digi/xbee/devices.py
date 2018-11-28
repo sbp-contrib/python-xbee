@@ -1636,13 +1636,13 @@ class XBeeDevice(AbstractXBeeDevice):
         self._packet_listener.start()
 
         # Determine the operating mode of the XBee device.
-        self._operating_mode = self._determine_operating_mode()
-        if self._operating_mode == OperatingMode.UNKNOWN:
-            self.close()
-            raise InvalidOperatingModeException("Could not determine operating mode")
-        if self._operating_mode == OperatingMode.AT_MODE:
-            self.close()
-            raise InvalidOperatingModeException.from_operating_mode(self._operating_mode)
+        self._operating_mode = OperatingMode.API_MODE
+        # if self._operating_mode == OperatingMode.UNKNOWN:
+        #     self.close()
+        #     raise InvalidOperatingModeException("Could not determine operating mode")
+        # if self._operating_mode == OperatingMode.AT_MODE:
+        #     self.close()
+        #     raise InvalidOperatingModeException.from_operating_mode(self._operating_mode)
 
         # Read the device info (obtain its parameters and protocol).
         self.read_device_info()
